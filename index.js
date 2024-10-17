@@ -4,6 +4,7 @@ const path = require('path');
 const app = express();
 require('dotenv').config();
 const port = process.env.PORT || 3000;
+const ejs = require('ejs');
 //const baseUrl = process.env.BASE_URL;
 
 const clientId =
@@ -101,14 +102,19 @@ app.post('/pay', async (req, res) => {
 // Serve the HTML file at the root URL
 
 app.get('/', (req, res) => {
-  const baseUrl = `${req.protocol}://${req.get('host')}`;
-  console.log('testing : ', baseUrl);
-  res.render('index');
+  res.render('layout', {
+    title: 'Home',
+    view: 'home',
+  });
 });
 
 app.get('/donate', (req, res) => {
-  res.render('donate');
+  res.render('layout', {
+    title: 'Donation',
+    view: 'donate',
+  });
 });
+
 app.get('/complete-order', async (req, res) => {
   try {
     const orderID = req.query.token;
