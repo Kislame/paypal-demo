@@ -114,6 +114,12 @@ app.get('/donate', (req, res) => {
     view: 'donate',
   });
 });
+app.get('/newsletter', (req, res) => {
+  res.render('layout', {
+    title: 'NewsLetter',
+    view: 'newsletter',
+  });
+});
 
 app.get('/complete-order', async (req, res) => {
   try {
